@@ -17,6 +17,14 @@ impl Magnitude for &Point {
     }
 }
 
+// Additionally, you can implement traits for external types, making it easy to extend
+// the functionality of existing parts of the language
+impl Magnitude for i32 {
+    fn magnitude(self) -> f64 {
+        self as f64
+    }
+}
+
 // Traits can be used for operator overloading
 impl Add for &Point {
     type Output = Point;
