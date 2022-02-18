@@ -40,7 +40,10 @@ impl Add for &Point {
 // Some traits can be implemented manually...
 impl Clone for Point {
     fn clone(&self) -> Self {
-        Self { x_pos: self.x_pos.clone(), y_pos: self.y_pos.clone() }
+        Point { 
+            x_pos: self.x_pos, 
+            y_pos: self.y_pos,
+         }
     }
 }
 
