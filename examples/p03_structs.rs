@@ -19,6 +19,27 @@ impl Person {
     }
 }
 
+// The reason implementation blocks exist is because you can add methods that only appear for certain generic variations:
+pub struct ContainsSomething<T> {
+    contained_value: T,
+    another_value: i32,
+}
+
+// This implementation is for ANY ContainsSomething
+impl<T> ContainsSomething<T> {
+    fn get_another_value(&self) -> i32 {
+        self.another_value
+    }
+}
+
+// This implementation is for a ContainsSomething that contains a STRING
+impl ContainsSomething<String> {
+    fn contained_value_length(&self) -> usize {
+        // Now we can call string functions off the contained value!
+        self.contained_value.chars().count()
+    }
+}
+
 pub fn main() {
     let jdoe = Person::new_john_doe();
     println!("{}", jdoe.full_name());
@@ -42,4 +63,15 @@ pub fn main() {
     // original value through a mutable reference. References are much smaller and easier to copy around
     // because they hold the address of the original value rather than the data
     println!("Here's what the original looks like after the fact: {}", jdoe_2.full_name());
+
+    // Here's some usage of the above ContainsSomething:
+    let contains_number = ContainsSomething { contained_value: 5, another_value: 10 };
+    let contains_string = ContainsSomething { contained_value: String::from("Hello world!"), another_value: 15 };
+
+    // Both instances can use get_another_value()
+    println!("Another value on both structs: {} {}", contains_number.get_another_value(), contains_string.get_another_value());
+
+    // But only contains_string can use contained_value_length! Using this on contains_number will not compile:
+    println!("Content length on contains_string: {}", contains_string.contained_value_length());
+    // println!("Content length on contains_number: {}", contains_number.contained_value_length()); // Does not compile
 }

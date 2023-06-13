@@ -12,8 +12,20 @@ pub fn main() {
     // Or more succinctly...
     let easier_value_get = value_doesnt_exist.unwrap_or(0);
 
+    // Other conditionals exist for dealing with option types as well, like if-let or let-else
+    // With an if-let, if the pattern you provide matches the target value the content if the "if" executes
+    // The pattern can also destructure, so you can pull values out of the target after matching
+    if let Some(value) = value_doesnt_exist {
+        println!("This shouldn't print!");
+    }
+    // A let-else is like an if-let but for cases where you only want to continue when the pattern matches
+    let Some(value) = value_exists else {
+        println!("The value didn't exist!!");
+        return;
+    }; // From here on, the extracted value is available in the function's scope
+
     // The option type is also used with iterators
-    // Here's how you could double a list of numbers with an iterator
+    // Here's how you could double a list of numbers with an iterator. While-let is like if-let but a loop
     let mut numbers = vec![1, 2, 3];
     let mut number_iterator = numbers.iter_mut(); // iter_mut produces an iterator that lets you mutate the values
     while let Some(number) = number_iterator.next() {

@@ -1,3 +1,4 @@
+use std::fmt::{Display, Formatter};
 use std::ops::Add;
 
 // Traits are like interfaces in other languages, defining behavior that will exist
@@ -54,9 +55,28 @@ struct ClonablePoint {
     y_pos: i32
 }
 
-// Because traits are like interfaces, you can accept any type that implements an interface as a parameter to functions
+// Because traits are like interfaces, you can accept any type that implements a trait as a parameter to functions
 fn magnitude_of(with_magnitude: impl Magnitude) -> f64 {
     with_magnitude.magnitude()
+}
+
+// You can also implement traits generically. In this case, we can implement a "double print" trait
+// on anything that implements Display (sort of like "to string" in other languages)
+trait DoublePrint {
+    fn double_print(&self) -> String;
+}
+
+impl<T: Display> DoublePrint for T {
+    fn double_print(&self) -> String {
+        format!("{} {}", self, self)
+    }
+}
+
+//...for this we also need a "display" implementation for point so let's do that:
+impl Display for Point {
+    fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
+        write!(f, "({}, {})", self.x_pos, self.y_pos)
+    }
 }
 
 pub fn main() {
@@ -65,4 +85,7 @@ pub fn main() {
 
     let point3 = &point1 + &point2;
     println!("The magnitude of the sum of the points is {}.", magnitude_of(&point3));
+
+    String::yeehaw();
+    println!("Point 1 doubled: {} number 5 doubled: {}", point1.double_print(), 5.double_print())
 }
