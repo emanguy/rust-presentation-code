@@ -1,6 +1,6 @@
 use std::fmt::Display;
 
-pub fn main() {
+fn main() {
     let my_number = 5;
 
     // Match statements are like enhanced switch statements and can "pattern match" values:

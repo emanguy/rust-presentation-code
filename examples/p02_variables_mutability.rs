@@ -1,4 +1,4 @@
-pub fn main() {
+fn main() {
     // Rust does type inference by default, but you can explicitly specify types if you want
     // Basic data types are all max 3 characters, typically three
     //

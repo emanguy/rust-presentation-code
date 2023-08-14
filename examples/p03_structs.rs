@@ -1,5 +1,5 @@
 // There are no objects in rust, but you can make data structures with struct
-pub struct Person {
+struct Person {
     first_name: String,
     last_name: String,
 }
@@ -20,7 +20,7 @@ impl Person {
 }
 
 // The reason implementation blocks exist is because you can add methods that only appear for certain generic variations:
-pub struct ContainsSomething<T> {
+struct ContainsSomething<T> {
     contained_value: T,
     another_value: i32,
 }
@@ -40,7 +40,7 @@ impl ContainsSomething<String> {
     }
 }
 
-pub fn main() {
+fn main() {
     let jdoe = Person::new_john_doe();
     println!("{}", jdoe.full_name());
 

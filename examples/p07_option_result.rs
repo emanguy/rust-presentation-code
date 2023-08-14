@@ -1,4 +1,4 @@
-pub fn main() {
+fn main() {
     // Enums are immensely valuable in Rust because they power the Option and Result types
 
     // The option enum allows you to express a value that may or may not be there

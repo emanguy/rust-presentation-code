@@ -1,4 +1,4 @@
-pub fn main() {
+fn main() {
     // Vectors are similar to Java's ArrayLists. There are other classic data structures in the lanugage like sets, queues, etc. too
     let favorite_numbers = vec![1337, 9001];
 

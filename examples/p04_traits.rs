@@ -79,13 +79,13 @@ impl Display for Point {
     }
 }
 
-pub fn main() {
+fn main() {
     let point1 = Point { x_pos: 2, y_pos: 1 };
     let point2 = point1.clone();
 
     let point3 = &point1 + &point2;
     println!("The magnitude of the sum of the points is {}.", magnitude_of(&point3));
 
-    String::yeehaw();
+    println!("Double printed string: {}", "hello world".double_print());
     println!("Point 1 doubled: {} number 5 doubled: {}", point1.double_print(), 5.double_print())
 }
